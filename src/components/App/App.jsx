@@ -29,7 +29,6 @@ export function App() {
 
       return;
     }
-
     setValue(value.trim());
     setPage(1);
     setPics([]);
@@ -64,8 +63,8 @@ export function App() {
       <Searchbar onSubmit={handleSearch} />
       <ImageGallery pics={pics} showSkeleton={showSkeleton} />
       {isLoading && <Loader />}
-      {showLoadMore && <Button onLoadMore={onLoadMore} />}
 
+      {showLoadMore && <Button onLoadMore={onLoadMore} />}
       {isEmpty && (
         <Message>Sorry, there is no pics on query: {value}😢</Message>
       )}
