@@ -17,6 +17,25 @@ export function App() {
   const [showSkeleton, setShowSkeleton] = useState(false);
 
   useEffect(() => {
+    const getPicsBySearch = async (value, pg) => {
+      try {
+        setIsLoading(true);
+        setShowSkeleton(true);
+
+        const { hits, total } = await getImages(value, page);
+
+        if (total === 0) setIsEmpty(true);
+
+        setPics(pics => [...pics, ...hits]);
+        setShowLoadMore(pg < Math.ceil(total / 12));
+      } catch (error) {
+        Notify.failure(error.message);
+      } finally {
+        setIsLoading(false);
+        setShowSkeleton(false);
+      }
+    };
+
     if (value) getPicsBySearch(value, page);
   }, [value, page]);
 
@@ -33,25 +52,6 @@ export function App() {
     setPage(1);
     setPics([]);
     setIsEmpty(false);
-  };
-
-  const getPicsBySearch = async (value, pg) => {
-    try {
-      setIsLoading(true);
-      setShowSkeleton(true);
-
-      const { hits, total } = await getImages(value, page);
-
-      if (total === 0) setIsEmpty(true);
-
-      setPics(pics => [...pics, ...hits]);
-      setShowLoadMore(pg < Math.ceil(total / 12));
-    } catch (error) {
-      Notify.failure(error.message);
-    } finally {
-      setIsLoading(false);
-      setShowSkeleton(false);
-    }
   };
 
   const onLoadMore = () => {
