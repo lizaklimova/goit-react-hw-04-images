@@ -55,7 +55,7 @@ export function App() {
   };
 
   const onLoadMore = () => {
-    setPage(page + 1);
+    setPage(page => page + 1);
   };
 
   return (
