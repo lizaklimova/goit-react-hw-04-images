@@ -8,6 +8,7 @@ export const Backdrop = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: rgba(125, 127, 157, 0.849);
+  z-index: 3;
 `;
 
 export const ModalWindow = styled.div`
@@ -18,13 +19,17 @@ export const ModalWindow = styled.div`
   background-color: #ffffff;
   border-radius: 20px;
   width: 87%;
-  height: 70%;
 
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 
   @media screen and (min-width: 457px) {
     width: 90%;
+  }
+
+  @media screen and (min-width: 1400px) {
+    height: 90%;
+    width: 70%;
   }
 `;
 
